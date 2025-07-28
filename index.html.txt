@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Équations - 3ème</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2 {
+      color: #0a4d8c;
+    }
+    .section {
+      margin-bottom: 40px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #a7d8ff;
+    }
+    .exercice {
+      background: #e6f7ff;
+      padding: 10px;
+      margin-top: 10px;
+      border-left: 5px solid #0a4d8c;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    input[type="text"] {
+      width: 50px;
+      padding: 5px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .resultat {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Cours interactif - Les équations (niveau 3e)</h1>
+
+  <div class="section">
+    <h2>🔍 Partie 1 : Qu'est-ce qu'une équation ?</h2>
+    <p>Une équation est une égalité comportant une <strong>inconnue</strong>. Résoudre une équation, c'est trouver la valeur de l'inconnue qui rend l'égalité vraie.</p>
+    <div class="exercice">
+      <p><strong>Exercice 1 :</strong> Est-ce que <strong>x = 3</strong> est solution de l'équation : <strong>2x + 1 = 7</strong> ?</p>
+      <button onclick="verifierSolution1()">Vérifier !</button>
+      <p class="resultat" id="resultat1"></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🧠 Partie 2 : Résoudre une équation</h2>
+    <p>On veut isoler <strong>x</strong> pour obtenir une expression du type <strong>x = nombre</strong>.</p>
+    <div class="exercice">
+      <p><strong>Exercice 2 :</strong> Résous l'équation suivante : <strong>-5x + 3 = -3x + 2</strong></p>
+      <p>Saisis ta réponse : x = <input type="text" id="reponse2"><button onclick="verifierSolution2()">Vérifier</button></p>
+      <p class="resultat" id="resultat2"></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📏 Partie 3 : Problème type brevet</h2>
+    <p>Un carré a pour côté <strong>x</strong>. Un triangle rectangle a pour base 100m et hauteur <strong>x</strong>. Les deux figures ont la même aire.</p>
+    <div class="exercice">
+      <p>Quelle est l'équation correspondant à cette situation ?</p>
+      <p><input type="text" id="equation3" style="width:300px"> <button onclick="verifierEquation3()">Vérifier</button></p>
+      <p class="resultat" id="resultat3"></p>
+    </div>
+  </div>
+
+  <script>
+    function verifierSolution1() {
+      const gauche = 2 * 3 + 1;
+      const droite = 7;
+      const result = (gauche === droite)
+        ? "✅ Oui ! 2×3 + 1 = 7, donc x = 3 est solution."
+        : "❌ Non, ce n'est pas une solution.";
+      document.getElementById("resultat1").innerText = result;
+    }
+
+    function verifierSolution2() {
+      const x = parseFloat(document.getElementById("reponse2").value);
+      const gauche = -5 * x + 3;
+      const droite = -3 * x + 2;
+      const result = Math.abs(gauche - droite) < 0.01
+        ? "✅ Bravo, c’est la bonne solution !"
+        : "❌ Hmm... Essaie encore !";
+      document.getElementById("resultat2").innerText = result;
+    }
+
+    function verifierEquation3() {
+      const equation = document.getElementById("equation3").value.replace(/\s/g, "");
+      const correct = ["x*x=50*x", "x²=50x", "x^2=50x"];
+      const result = correct.includes(equation.toLowerCase())
+        ? "✅ Parfait ! x² = 50x est l'équation correcte."
+        : "❌ Ce n'est pas la bonne équation. Pense à l'aire d'un carré et d'un triangle.";
+      document.getElementById("resultat3").innerText = result;
+    }
+  </script>
+</body>
+</html>
